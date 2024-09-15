@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import React from "react";
+import { CartContextProvider } from "@/lib/CartContext"
 import { Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 
@@ -10,11 +11,15 @@ export default function App({
   pageProps
 }) {
   return (
-    <main
-      className={`${inter.className} min-h-screen max-w-screen-2xl mx-auto bg-background text-text`}
-    >
-      <Header />
-      <Component {...pageProps} />
-    </main>
+    <>
+      <CartContextProvider>
+        <main
+          className={`${inter.className} min-h-screen max-w-screen-2xl mx-auto bg-background text-text`}
+        >
+          <Header />
+          <Component {...pageProps} />
+        </main>
+      </CartContextProvider>
+    </>
   );
 }
