@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import React from "react";
 import { CartContextProvider } from "@/lib/CartContext"
+import { Toaster } from "react-hot-toast"
 import { Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 
@@ -18,6 +19,10 @@ export default function App({
         >
           <Header />
           <Component {...pageProps} />
+          <Toaster 
+            position="top-center"
+            reverseOrder={false}
+          />
         </main>
       </CartContextProvider>
     </>

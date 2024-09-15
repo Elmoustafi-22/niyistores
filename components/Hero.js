@@ -1,6 +1,16 @@
 import Link from "next/link";
+import { useContext } from "react";
+import { CartContext } from "@/lib/CartContext";
+import toast from "react-hot-toast";
 
 function Hero({ product }){
+const { addProduct } = useContext(CartContext);
+
+function addItemToCart() {
+  addProduct(product._id)
+  toast.success("Item added to cart!")
+}
+
 if (product) {
     return (
       <>
@@ -36,6 +46,7 @@ if (product) {
                     focus:ring-primary-200 disabled:cursor-not-allowed 
                     disabled:border-primary-300 disabled:bg-primary-300
                     hover:shadow-md ease-in duration-300"
+                    onClick={addItemToCart}
                   >
                     Add to Cart
                   </button>
