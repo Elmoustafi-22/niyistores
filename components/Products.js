@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 const formatPrice = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
 export default function Products({ products }) {
   const { addProduct } = useContext(CartContext);
 
@@ -45,7 +46,7 @@ export default function Products({ products }) {
 
                       <div className="mt-1.5 flex items-center justify-between text-text">
                         <p className="tracking-wide text-primary">
-                          {formatPrice(product.price)} Naira.
+                          ${formatPrice(product.price)}
                         </p>
 
                         <button

@@ -75,7 +75,7 @@ export default function Header() {
 
                 <Link
                   className="hidden px-5 py-2.5 rounded-md text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
-                  href="/carts"
+                  href="/cart"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
