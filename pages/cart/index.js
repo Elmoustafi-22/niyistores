@@ -315,7 +315,8 @@ function Cart() {
                           />
                         </div>
                         <div className="col-span-12 text-center w-full">
-                          <button className="disabled block rounded bg-secondary px-5 py-3 text-md text-text transition hover:bg-purple-300 w-full hover:shadow-md">
+                          <button className="disabled block rounded bg-secondary px-5 py-3 text-md text-text transition hover:bg-purple-300 w-full hover:shadow-md"
+                            onClick={stripeCheckout}>
                             Checkout
                           </button>
                         </div>
