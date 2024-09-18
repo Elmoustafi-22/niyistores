@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { CartContext } from "@/lib/CartContext";
+import Spinner from "@/components/Spinner";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import Success from "@/components/Success";
@@ -12,7 +13,6 @@ function Cart() {
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [country, setCountry] = useState("");
     const [zip, setZip] = useState("")
     const [isSuccess, setIsSuccess] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -22,9 +22,11 @@ function Cart() {
         if (cartProducts.length > 0) {
           axios.post("/api/cart", { ids: cartProducts }).then(response => {
             setProducts(response.data);
+            setLoading(false)
           });
         } else {
             setProducts([]);
+            setLoading(false)
         }
     }, [cartProducts]);
 
@@ -99,7 +101,11 @@ function Cart() {
                       Your Cart
                     </h1>
                   </header>
-                  {!products?.length ? (
+                  {loading ? (
+                    <div className="flex justify-center items-center h-screen">
+                      <Spinner />
+                    </div>
+                  ) : !products?.length ? (
                     <p className="my-6 text-center">Your Cart is Empty</p>
                   ) : (
                     <>
@@ -330,19 +336,24 @@ function Cart() {
         );
     }
 
-    return <>
+    return (
+      <>
         <div className="grid h-screen px-4 bg-white place-content-center">
-            <div className="text-center">
-                <p className="mt-4 text-text text-2xl">You should sign Up to view cart Items</p>
-                <button
-                  onClick={() => signIn("google")}
-                  className="inline-block px-5 py-3 mt-6 text-sm font-medium big-primary rounded hover:bg-primary focus:outline-none focus:ring"
-                >
-                    Login / Register
-                </button>
-            </div>
+          <div className="text-center">
+            <p className="mt-4 text-text text-2xl">
+              You should sign Up to view cart Items
+            </p>
+
+            <button
+              onClick={() => signIn("google")}
+              className="inline-block px-5 py-3 mt-6 text-sm font-medium text-text bg-primary rounded hover:bg-primary focus:outline-none focus:ring"
+            >
+              Login / Register
+            </button>
+          </div>
         </div>
-    </>
+      </>
+    );
 }
 
 export default Cart;
