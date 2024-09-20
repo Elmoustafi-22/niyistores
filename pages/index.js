@@ -4,7 +4,6 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import Products from "@/components/Products";
 import Collection from "@/components/Collection";
-import { stringify } from "postcss";
 
 export default function Home({featuredProduct, newProducts, collectionProduct}) {
   return (

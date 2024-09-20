@@ -12,6 +12,7 @@ function Header() {
   const { pathname } = router;
   const {cartProducts} = useContext(CartContext)
   const { data:session } = useSession();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     setCurrentPath(window.location.pathname)
@@ -20,6 +21,10 @@ function Header() {
   const toggleMobileNav = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
   };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  }
 
   const active = "text-primary transition hover:text-secondary-500 font-bold";
   const inactive = "text-gray-500 transition hover:text-gray-500/75";
@@ -79,20 +84,30 @@ function Header() {
               {session ? (
                 <div className="sm:flex sm:gap-2 border-r border-primary pr-4">
                   <div className="h-9 w-9">
-                    <img
-                      className="h-full w-full rounded-full object-cover object-center"
-                      src={session.user.image}
-                    />
+                    <Link
+                      href={router.asPath}
+                      className={pathname === "/" ? active : inactive}
+                      onClick={toggleDropdown}
+                    >
+                      <img
+                        className="h-full w-full rounded-full object-cover object-center"
+                        src={session.user.image}
+                      />
+                      {dropdownOpen && (
+                        <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-lg rounded-lg">
+                          <button
+                            onClick={() => signOut()}
+                            className="block w-full px-6 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
+                          >
+                            Logout
+                          </button>
+                        </div>
+                      )}
+                    </Link>
                   </div>
                 </div>
               ) : (
                 <div className="sm:flex sm:gap-2 border-r border-primary pr-4">
-                  <Link
-                    className="text-md font-medium text-text hidden md:flex"
-                    href="/"
-                  >
-                    Account
-                  </Link>
                   <Link
                     className="text-md font-medium text-text hidden max-md:flex md:hidden"
                     href="/"
