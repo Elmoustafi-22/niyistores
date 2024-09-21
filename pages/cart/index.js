@@ -200,7 +200,7 @@ export default function Cart() {
 
                         <div className="flex justify-between !text-base font-medium">
                           <dt>Total</dt>
-                          <dd>Ksh. {formatPrice(total)}</dd>
+                          <dd>${formatPrice(total)}</dd>
                         </div>
                       </dl>
 
