@@ -96,7 +96,7 @@ function Header() {
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-400 px-5 py-1 text-red-500 transition duration-300 hover:shadow-md hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-400 px-5 py-1 text-red-500 transition duration-300 hover:shadow-md hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring max-sm:hidden"
                     type="button"
                   >
                     <span className="text-sm font-medium"> Logout </span>
