@@ -14,6 +14,11 @@ function Header() {
   const { data:session } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const handleLogout = async () => {
+    await signOut();
+    router.replace("/");
+  };
+
   useEffect(() => {
     setCurrentPath(window.location.pathname)
   }, [])
@@ -84,27 +89,33 @@ function Header() {
               {session ? (
                 <div className="sm:flex sm:gap-2 border-r border-primary pr-4">
                   <div className="h-9 w-9">
-                    <Link
-                      href={router.asPath}
-                      className={pathname === "/" ? active : inactive}
-                      onClick={toggleDropdown}
-                    >
-                      <img
-                        className="h-full w-full rounded-full object-cover object-center"
-                        src={session.user.image}
-                      />
-                      {dropdownOpen && (
-                        <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-lg rounded-lg">
-                          <button
-                            onClick={() => signOut()}
-                            className="block w-full px-6 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
-                          >
-                            Logout
-                          </button>
-                        </div>
-                      )}
-                    </Link>
+                    <img
+                      className="h-full w-full rounded-full object-cover object-center"
+                      src={session.user.image}
+                    />
                   </div>
+                  <button
+                    onClick={handleLogout}
+                    className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-400 px-5 py-1 text-red-500 transition duration-300 hover:shadow-md hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring"
+                    type="button"
+                  >
+                    <span className="text-sm font-medium"> Logout </span>
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-4 h-4"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                      />
+                    </svg>
+                  </button>
                 </div>
               ) : (
                 <div className="sm:flex sm:gap-2 border-r border-primary pr-4">
