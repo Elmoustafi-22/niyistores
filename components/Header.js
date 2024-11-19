@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 
 function Header() {
@@ -89,7 +90,10 @@ function Header() {
               {session ? (
                 <div className="sm:flex sm:gap-2 border-r border-primary pr-4">
                   <div className="h-9 w-9">
-                    <img
+                    <Image
+                      height={50}
+                      width={50}
+                      alt="user avatar"
                       className="h-full w-full rounded-full object-cover object-center"
                       src={session.user.image}
                     />

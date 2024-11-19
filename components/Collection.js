@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const formatPrice = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -50,7 +51,9 @@ export default function Collection({ product }) {
                     <ul className="grid grid-cols-2 gap-4">
                       <li>
                         <div className="block group">
-                          <img
+                          <Image
+                            height={50}
+                            width={50}
                             src={product.images[0]}
                             alt=""
                             className="object-cover w-full rounded aspect-square"
@@ -60,7 +63,9 @@ export default function Collection({ product }) {
 
                       <li>
                         <div className="block group">
-                          <img
+                          <Image
+                            height={50}
+                            width={50}
                             src={product.images[1]}
                             alt=""
                             className="object-cover w-full rounded aspect-square"

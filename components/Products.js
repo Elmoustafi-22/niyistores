@@ -1,4 +1,5 @@
 import { CartContext } from "@/lib/CartContext";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
@@ -24,13 +25,17 @@ export default function Products({ products }) {
                 <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
                   <div className="p-1">
                     <div className="relative h-[300px] sm:h-[300px]">
-                      <img
+                      <Image
+                        height={50}
+                        width={50}
                         src={product.images[0]}
                         alt=""
                         className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0"
                       />
 
-                      <img
+                      <Image
+                        height={50}
+                        width={50}
                         src={product.images[1]}
                         alt=""
                         className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"

@@ -2,6 +2,7 @@ import { CartContext } from "@/lib/CartContext";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import { useContext } from "react";
+import Image from "next/image";
 import toast from "react-hot-toast";
 
 const formatPrice = (price) => {
@@ -16,7 +17,9 @@ function ProductPage({ product }){
             <section className="mt-20 md:mt-6">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:aspect-h-2 lg:aspect-w-2 lg:rounded-lg overflow-hidden px-4 md:px-2">
-                  <img
+                  <Image
+                    height={50}
+                    width={50}
                     src={product.images[0]}
                     alt={product.images[0]}
                     className="w-full h-full md:h-[90vh] object-cover object-center border border-primary rounded-lg "
@@ -28,7 +31,9 @@ function ProductPage({ product }){
                       key={index}
                       className="lg:aspect-h-2 lg:aspect-w-3 lg:overflow-hidden lg:rounded-lg "
                     >
-                      <img
+                      <Image
+                        height={50}
+                        width={50}
                         src={image}
                         alt={image}
                         className="w-full h-full md:h-[44vh] object-cover object-center border rounded-lg border-secondary p-4"
